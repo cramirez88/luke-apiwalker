@@ -13,11 +13,12 @@ import Form from './components/Form';
 function App() {
   return (
    <>
-   <Form/>
    <BrowserRouter>
+   <Form/>
+   
     <Routes>
-      <Route path='/people' element={<People/>}/>
-      <Route path='/planets' element={<Planets/>}/>
+      <Route path='/people/:id' element={<People/>}/>
+      <Route path='/planets/:id' element={<Planets/>}/>
     </Routes>
    </BrowserRouter>
  
