@@ -11,6 +11,7 @@ export default function Form() {
   const handleForm = (e) =>{
     e.preventDefault()
     navigate(`/${category}/${id}`)
+    setId('')
   }
   return (
     <div>
@@ -25,7 +26,7 @@ export default function Form() {
         </div>
         <div>
           <label>ID:</label>
-          <input type={"text"} onChange={(e) => setId(e.target.value)}></input>
+          <input type={"text"} onChange={(e) => setId(e.target.value)} value={id}></input>
         </div>
         <input type="submit"></input>
       </form>

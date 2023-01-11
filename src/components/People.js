@@ -6,17 +6,25 @@ export default function People() {
   const {id} = useParams()
   const [error, setError] = useState('')
   const [apiData, setApiData] = useState({})
+  const [homeworld, setHomeworld] = useState([])
   useEffect(() => {
     axios.get(`https://swapi.dev/api/people/${id}`)
     .then(res => {
       console.log(res.data)
       setApiData(res.data)
+      
+    })
+    axios.get(`https://swapi.dev/api/planets/${id}`)
+    .then(res => {
+      console.log(res)
+      setHomeworld(res.data.name)
     })
     .catch(err => {
       console.log('this is the people\'s component error' + err)
       setError('This is the people\'s component error')
     })
-  },[])
+    
+  },[id])
   if(!error){
     return (
       <>
@@ -25,7 +33,7 @@ export default function People() {
        <p>{apiData.eye_color}</p>
        <p>{apiData.skin_color}</p>
        <p>{apiData.birth_year}</p>
-      
+      <p>{homeworld}</p>
       </div>
 
       </>

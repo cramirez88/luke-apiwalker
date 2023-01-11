@@ -16,7 +16,7 @@ export default function Planets() {
       console.log('you are receiving an error' + err)
       setError('this is your error')
     })
-  },[])
+  },[id])
 
   
   return (
@@ -24,7 +24,8 @@ export default function Planets() {
       <p>Name: {planetApiData.name}</p>
       <p>Climate: {planetApiData.climate}</p>
       <p>Population: {planetApiData.population}</p>
-      <p>Gravity: {[planetApiData.gravity]}</p>
+      <p>Gravity: {planetApiData.gravity}</p>
+    
 
       {
         error? 
