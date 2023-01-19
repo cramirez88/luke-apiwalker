@@ -1,0 +1,18 @@
+.form{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.inputDivs {
+  margin: 10px;
+}
+
+.searchBtn {
+  background-color: navy;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 7px;
+}
+
