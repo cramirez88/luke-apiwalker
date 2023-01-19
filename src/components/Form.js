@@ -1,21 +1,17 @@
 import React, {useState} from 'react'
 import '../styles/Form.css'
-import {useNavigate, useParams} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 export default function Form(props) {
   const [category, setCategory] = useState('')
   const [id, setId] = useState()
-  const {categoryArray, setCategoryArray, idArray, setIdArray} = props
  const navigate = useNavigate()
-//  const { id } = useParams()
 
   const formHandler = (e) => {
     e.preventDefault()
-    // setCategoryArray([...categoryArray, category])
-    // setIdArray([...idArray, id])
     
-    navigate(`/people/${id}/`)
-    console.log(id)
+    navigate(`/${category}/${id}/`)
+    // setId('')
   }
   return (
     <div>
@@ -23,8 +19,8 @@ export default function Form(props) {
         <div className='inputDivs'>
           <label>Search For: </label>
           <select onChange={(e) => setCategory(e.target.value)}>
-            <option>People</option>
-            <option>Planets</option>
+            <option>people</option>
+            <option>planets</option>
           </select>
         </div>
         <div className='inputDivs'>

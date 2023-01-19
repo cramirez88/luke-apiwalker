@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
     <Form categoryArray={categoryArray} setIdArray={setIdArray} setCategoryArray={setCategoryArray} idArray={idArray} />
       <Routes>
-        <Route path={'/people/:id/'} element={<Display/>}></Route>
+        <Route path={'/:category/:id/'} element={<Display/>}></Route>
       </Routes>
     </BrowserRouter>
   
