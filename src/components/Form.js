@@ -10,7 +10,7 @@ export default function Form(props) {
   const formHandler = (e) => {
     e.preventDefault()
     
-    navigate(`/${category}/${id}/`)
+    navigate(`/people/${id}/`)
     // setId('')
   }
   return (
