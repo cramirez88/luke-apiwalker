@@ -6,7 +6,7 @@ import "../styles/Display.css";
 export default function Display(props) {
   const [apiData, setApiData] = useState({});
   // const [error, setError] = useState(false);
-  // const [homeworld, setHomeworld] = useState('')
+  const [homeworld, setHomeworld] = useState('')
   const { id } = useParams();
   useEffect(() => {
     axios
@@ -14,7 +14,15 @@ export default function Display(props) {
       .then((res) => 
       {
         setApiData(res.data)
-        // setHomeworld(res.data.homeworld)
+      //  set character's homeworld
+        axios.get(res.data.homeworld)
+        .then(res => {
+          console.log(res.data)
+          setHomeworld(res.data.name)
+        })
+        .catch(err => {
+          console.log(err)
+        })
       })
       .catch((err) => {
         console.log(err)
@@ -29,6 +37,7 @@ export default function Display(props) {
           <p>Gender: {apiData.gender}</p>
           <p>Height: {apiData.height}</p>
           <p>Mass: {apiData.mass}</p>
+          <p>Homeworld: {homeworld}</p>
         </div>
 
   );
