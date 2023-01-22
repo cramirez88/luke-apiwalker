@@ -4,14 +4,13 @@ import {useNavigate} from 'react-router-dom'
 
 export default function Form(props) {
   const [category, setCategory] = useState('')
-  const [id, setId] = useState()
+  const [id, setId] = useState('')
  const navigate = useNavigate()
 
   const formHandler = (e) => {
     e.preventDefault()
     
-    navigate(`/${category}/${id}/`)
-    setId('')
+    navigate(`/${category}/${id}`)
   }
   return (
     <div>
@@ -19,15 +18,17 @@ export default function Form(props) {
         <div className='inputDivs'>
           <label>Search For: </label>
           <select onChange={(e) => setCategory(e.target.value)}>
-            <option value={'people'}>people</option>
-            <option value={'planets'}>planets</option>
+            <option value={'----'}>----</option>
+            <option value='people'>people</option>
+            <option value='planets'>planets</option>
           </select>
         </div>
         <div className='inputDivs'>
           <label>ID: </label>
-          <input type='text' onChange={(e) => setId(e.target.value)} value={id}></input>
+          <input type='text' onChange={(e) => setId(e.target.value)} ></input>
         </div>
         <button className='searchBtn'>Search</button>
+        {/* <h1>{category}</h1> */}
       </form>
     </div>
   )
