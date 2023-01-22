@@ -6,14 +6,27 @@ import "../styles/Display.css";
 export default function Display(props) {
   const [apiData, setApiData] = useState({});
   const [error, setError] = useState(false);
+  const [homeworld, setHomeworld] = useState('')
   const { id } = useParams();
   useEffect(() => {
     axios
       .get(`https://swapi.dev/api/people/${id}/`)
-      .then((res) => setApiData(res.data))
+      .then((res) => 
+      {
+        setApiData(res.data)
+        // setHomeworld(res.data.homeworld)
+
+        axios.get(res.data.homeworld)
+        .then(res => {
+          setHomeworld(res.data.name)
+          console.log(homeworld)
+        })
+        .catch(err => console.log(err))
+      })
       .catch((err) =>
         setError(`These aren't the droids you are looking for` + err)
       );
+     
   }, [apiData]);
   return (
     <div>
@@ -28,6 +41,7 @@ export default function Display(props) {
           <li>Gender: {apiData.gender}</li>
           <li>Height: {apiData.height}</li>
           <li>Mass: {apiData.mass}</li>
+          <li>Homeworld: {homeworld}</li>
         </div>
       )}
     </div>

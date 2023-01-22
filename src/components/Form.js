@@ -11,7 +11,7 @@ export default function Form(props) {
     e.preventDefault()
     
     navigate(`/${category}/${id}/`)
-    // setId('')
+    setId('')
   }
   return (
     <div>
@@ -25,7 +25,7 @@ export default function Form(props) {
         </div>
         <div className='inputDivs'>
           <label>ID: </label>
-          <input type='text' onChange={(e) => setId(e.target.value)}></input>
+          <input type='text' onChange={(e) => setId(e.target.value)} value={id}></input>
         </div>
         <button className='searchBtn'>Search</button>
       </form>
