@@ -10,7 +10,7 @@ export default function Form(props) {
   const formHandler = (e) => {
     e.preventDefault()
     
-    navigate(`/people/${id}/`)
+    navigate(`/${category}/${id}/`)
     // setId('')
   }
   return (
@@ -19,8 +19,8 @@ export default function Form(props) {
         <div className='inputDivs'>
           <label>Search For: </label>
           <select onChange={(e) => setCategory(e.target.value)}>
-            <option>people</option>
-            <option>planets</option>
+            <option value={'people'}>people</option>
+            <option value={'planets'}>planets</option>
           </select>
         </div>
         <div className='inputDivs'>

@@ -5,6 +5,7 @@ import { BrowserRouter,
         Route,
         Routes
 } from 'react-router-dom';
+import DisplayPlanet from './components/DisplayPlanet';
 
 function App() {
   const [categoryArray, setCategoryArray] = useState([])
@@ -15,7 +16,8 @@ function App() {
     <BrowserRouter>
     <Form categoryArray={categoryArray} setIdArray={setIdArray} setCategoryArray={setCategoryArray} idArray={idArray} />
       <Routes>
-        <Route path={'/:category/:id/'} element={<Display/>}></Route>
+        <Route path={'/people/:id/'} element={<Display/>}></Route>
+        <Route path={'/planets/:id/'} element={<DisplayPlanet/>}></Route>
       </Routes>
     </BrowserRouter>
   
