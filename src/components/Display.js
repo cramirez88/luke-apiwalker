@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "../styles/Display.css";
 
 export default function Display(props) {
   const [apiData, setApiData] = useState({});
   const [error, setError] = useState(false);
   const [homeworld, setHomeworld] = useState("");
+  const [homeworldId, setHomeworldId] = useState()
   const { id } = useParams();
   useEffect(() => {
     axios
@@ -14,6 +15,8 @@ export default function Display(props) {
       .then((res) => {
         setApiData(res.data);
         setError(false)
+        extractId(res.data.homeworld)
+        
         //  set character's homeworld
         axios
           .get(res.data.homeworld)
@@ -30,6 +33,19 @@ export default function Display(props) {
         setError(true);
       });
   }, [id]);
+
+  const extractId = (url) => {
+    if(url.length - 3 === '/'){
+      const singleId = url.charAt(url.length - 2)
+      setHomeworldId(singleId)
+    } else {
+      const singleDigitId = url.charAt(url.length - 2 )
+      const doubleDigitId = url.charAt(url.length - 3)
+      const hwId = `${doubleDigitId}${singleDigitId}`
+      setHomeworldId(hwId)
+    }
+
+  }
     return (
       <div>
              {
@@ -40,6 +56,7 @@ export default function Display(props) {
         <p>Height: {apiData.height}</p>
         <p>Mass: {apiData.mass}</p>
         <p>Homeworld: {homeworld}</p>
+        <Link to={`/planets/${homeworldId}`}>Go here to explore homeworld {homeworldId}</Link>
       </div>:
       <div>
               <h3>These aren't the droids you are looking for. </h3>
@@ -53,3 +70,4 @@ export default function Display(props) {
 
   };
 
+const l =   "https://swapi.dev/api/planets/10/"
